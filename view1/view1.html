@@ -1,1 +1,43 @@
-<p>This is the partial for view 1.</p>
+<div class="players" style="text-align: center;">
+    <div>
+        {{players[0].name}}
+        <br>${{players[0].cash}}
+        <br>
+        <card ng-show="thinking || players[0].value" ng-repeat="card in players[0].cards" c-val="card"></card>
+        <div ng-hide="thinking || players[0].value">
+            <img src="img/cards/b1pl.png" alt="">
+            <img src="img/cards/b1fv.png" alt="">
+        </div>
+        <span ng-show="players[0].won" style="color: green;">Won: {{players[0].won}}</span>
+        <span ng-show="players[0].lost" style="color: red;">lost: {{players[0].lost}}</span>
+
+        <div ng-show="thinking">
+            <button ng-click="yes()">Yes</button>
+            <button ng-click="no()">No</button>
+        </div>
+        <div ng-hide="thinking">
+            <button ng-click="deal()">Deal</button>
+        </div>
+    </div>
+    <div ng-repeat="player in players" ng-if="!$first">
+        {{player.name}}
+        <br>
+        <span ng-class="{red: player.cash <= 0}">${{player.cash}}</span>
+        <br>
+        <card ng-show="player.value" ng-repeat="card in player.cards" c-val="card"></card>
+        <div ng-show="player.cards.length > 0 && !player.value">
+            <img src="img/cards/b1pl.png" alt="">
+            <img src="img/cards/b1fv.png" alt="">
+        </div>
+        <span ng-show="player.won" style="color: green;">Won: {{player.won}}</span>
+        <span ng-show="player.lost" style="color: red;">lost: {{player.lost}}</span>
+    </div>
+    <div>
+        Deck
+        <card ng-repeat="card in ghost.cards" c-val="card"></card>
+    </div>
+</div>
+
+<div class="pot">
+    ${{pot}}
+</div>
