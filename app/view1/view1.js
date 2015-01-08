@@ -24,25 +24,25 @@ angular.module('myApp.view1', ['ngRoute'])
             value: 0,
             cutoff: 1400
         }, {
-            name: 'Mike',
+            name: 'Joe Schmoe',
             cash: 25,
             cards: [],
             value: 0,
             cutoff: 1400
         }, {
-            name: 'Trevor',
+            name: 'Risky Ralph',
             cash: 25,
             cards: [],
             value: 0,
             cutoff: 1308
         }, {
-            name: 'Dugan',
+            name: 'Nervous Natalia',
             cash: 25,
             cards: [],
             value: 0,
             cutoff: 1408
         }, {
-            name: 'Bobby',
+            name: 'Joey McAverage',
             cash: 25,
             cards: [],
             value: 0,
@@ -132,6 +132,14 @@ angular.module('myApp.view1', ['ngRoute'])
             }
         }
 
+        function payup(player, multitude) {
+            var amount = multitude * $scope.pot;
+            player.cash -= amount;
+            player.lost = amount;
+
+            return amount;
+        }
+
         function inOrOut() {
             var candidate = false;
             var moreThanOne = false;
@@ -162,9 +170,7 @@ angular.module('myApp.view1', ['ngRoute'])
                 if (moreThanOne) {
                     if (_.contains(losers, candidate)) {
                         angular.forEach(losers, function(i) {
-                            $scope.players[i].cash -= (2 * $scope.pot);
-                            $scope.players[i].lost = (2 * $scope.pot);
-                            payload += (2 * $scope.pot);
+                            payload += payup($scope.players[i], 2);
                         });
                     } else {
                         $scope.players[candidate].cash += $scope.pot;
@@ -172,9 +178,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
                         for (var i = 0; i < $scope.players.length; i++) {
                             if (i !== candidate && $scope.players[i].value) {
-                                $scope.players[i].cash -= $scope.pot;
-                                $scope.players[i].lost = $scope.pot;
-                                payload += $scope.pot;
+                                payload += payup($scope.players[i], 1);
                             }
                         }
                         $scope.pot -= $scope.pot;
@@ -185,9 +189,10 @@ angular.module('myApp.view1', ['ngRoute'])
                     $scope.ghost.value = getValue($scope.ghost.cards);
 
                     if ($scope.ghost.value > $scope.players[candidate].value) {
-                        $scope.players[candidate].cash -= (2 * $scope.pot);
-                        $scope.players[candidate].lost = 2 * $scope.pot;
-                        payload += (2 * $scope.pot);
+                        payload += payup($scope.players[candidate], 2);
+
+                    } else if ($scope.ghost.value === $scope.players[candidate].value) {
+                        payload += payup($scope.players[candidate], 3);
                     } else {
                         $scope.players[candidate].cash += $scope.pot;
                         $scope.players[candidate].won = $scope.pot;

@@ -1,66 +1,67 @@
 /* app css stylesheet */
 
 .menu {
-    list-style: none;
-    border-bottom: 0.1em solid black;
-    margin-bottom: 2em;
-    padding: 0 0 0.5em;
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
 }
 .menu:before {
-    content: "[";
+  content: "[";
 }
 .menu:after {
-    content: "]";
+  content: "]";
 }
 .menu > li {
-    display: inline;
+  display: inline;
 }
 .menu > li:before {
-    content: "|";
-    padding-right: 0.3em;
+  content: "|";
+  padding-right: 0.3em;
 }
 .menu > li:nth-child(1):before {
-    content: "";
-    padding: 0;
+  content: "";
+  padding: 0;
 }
 .players > div {
-    position: absolute;
+  position: absolute;
 }
 .players > div:first-child {
-    left: 50%;
-    top: 75%;
+  left: 50%;
+  top: 70%;
 }
 .players > div:nth-child(2) {
-    left: 25%;
-    top: 50%;
+  left: 25%;
+  top: 45%;
 }
 .players > div:nth-child(3) {
-    left: 35%;
-    top: 25%;
+  left: 35%;
+  top: 20%;
 }
 .players > div:nth-child(4) {
-    right: 35%;
-    top: 25%;
+  right: 35%;
+  top: 20%;
 }
 .players > div:nth-child(5) {
-    right: 25%;
-    top: 50%;
+  right: 25%;
+  top: 45%;
 }
 .players > div:last-child {
-    left: 25%;
-    top: 75%;
+  left: 25%;
+  top: 70%;
 }
 .pot {
-    position: absolute;
-    right: 50%;
-    top: 50%;
-    font-size: 200%;
-}
-.deal {
-    position: absolute;
-    right: 50%;
-    top: 55%;
+  position: absolute;
+  /*left: 51%;*/
+  
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 50%;
+  font-size: 200%;
+  width: 60px;
 }
 .red {
-    color: red;
+  color: red;
 }
