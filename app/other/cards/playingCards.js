@@ -172,10 +172,10 @@ if (Array.indexOf === undefined) {
             "A": "Ace"
         },
         "suits": {
-            "S": "Spades",
-            "D": "Diamonds",
-            "C": "Clubs",
-            "H": "Hearts"
+            "s": "Spades",
+            "d": "Diamonds",
+            "c": "Clubs",
+            "h": "Hearts"
         }
     };
 
@@ -215,7 +215,7 @@ if (Array.indexOf === undefined) {
      */
     playingCards.card.defaults = {
         "singleFace": false
-        // false will use a different image for each suit/face, true will use diamond image for all
+            // false will use a different image for each suit/face, true will use diamond image for all
     };
     /**
      * get the text representation of the card
